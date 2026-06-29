@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "demo_mode": false,
+  "llm_model": "cohere/north-mini-code:free",
+  "embedding_model": "text-embedding-3-small",
+  "vector_db": "ChromaDB (local)",
+  "knowledge_base_loaded": true
+}

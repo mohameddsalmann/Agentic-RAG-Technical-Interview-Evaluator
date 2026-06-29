@@ -1,0 +1,9 @@
+{
+  "candidate_name": "Ahmed Hassan",
+  "role": "Backend Engineer",
+  "seniority": "Mid",
+  "problem_title": "Design a Rate Limiter",
+  "problem_description": "Design and implement a rate limiter that limits the number of requests a user can make within a given time window.",
+  "candidate_code": "class RateLimiter:\n    def __init__(self, max_requests, window_seconds):\n        self.max_requests = max_requests\n        self.window = window_seconds\n        self.requests = {}\n\n    def is_allowed(self, user_id, timestamp):\n        if user_id not in self.requests:\n            self.requests[user_id] = []\n\n        # Remove old timestamps outside the window\n        self.requests[user_id] = [\n            t for t in self.requests[user_id]\n            if t > timestamp - self.window\n        ]\n\n        if len(self.requests[user_id]) >= self.max_requests:\n            return False\n\n        self.requests[user_id].append(timestamp)\n        return True\n",
+  "language": "python"
+}

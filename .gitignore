@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment
+.env
+.env.local
+
+# Build
+.next/
+out/
+dist/
+
+# Vector DB
+chroma_db/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test files
+test_debug.py
+
+# Logs
+*.log
+
+# Legacy Python backend (kept for reference)
+legacy_backend/
+
+# Baseline fixtures (already committed)
+# baseline/

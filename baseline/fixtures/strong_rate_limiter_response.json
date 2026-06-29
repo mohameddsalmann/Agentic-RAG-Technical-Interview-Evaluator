@@ -1,0 +1,158 @@
+{
+  "candidate_name": "Ahmed Hassan",
+  "role": "Backend Engineer",
+  "problem_title": "Design a Rate Limiter",
+  "overall_score": 61,
+  "recommendation": "Lean No Hire",
+  "scores": {
+    "correctness": 80,
+    "complexity": 20,
+    "edge_cases": 55,
+    "readability": 70,
+    "maintainability": 65,
+    "communication": 60
+  },
+  "time_complexity": "O(max_requests) per call (or O(k) where k is the number of timestamps stored for the user, bounded by max_requests)",
+  "space_complexity": "O(U * max_requests) in worst case, where U is the number of users (equivalently O(total stored timestamps))",
+  "strengths": [
+    "Accurately models a fixed\u2011window rate limiter with per\u2011user timestamp tracking",
+    "Clear, straightforward logic that is easy to understand and maintain",
+    "Efficient pruning of stale timestamps to enforce the time window",
+    "Respects the `max_requests` limit and returns a boolean indicating allowance"
+  ],
+  "weaknesses": [
+    "Boundary condition uses `>` instead of `>=`, potentially mis\u2011classifying requests at the window edge",
+    "No input validation for `user_id` or `timestamp`",
+    "Not thread\u2011safe; concurrent calls can corrupt internal state",
+    "Assumes monotonic timestamps; out\u2011of\u2011order timestamps break correctness",
+    "Uses a list for timestamps, leading to O(N) operations for high request rates",
+    "Lacks documentation, comments, and explicit error handling"
+  ],
+  "missed_edge_cases": [
+    "No empty input handling detected",
+    "No null/None checks detected",
+    "No negative value handling detected",
+    "No type validation detected",
+    "No concurrency handling detected",
+    "No memory cleanup mechanism detected"
+  ],
+  "retrieved_rubric_evidence": [
+    {
+      "source": "backend_engineer_rubric.md",
+      "snippet": "# Backend Engineer Rubric\n\n## Evaluation Criteria for Backend Engineer Roles\n\n### Correctness (Weight: 30%)\n- Solution correctly implements the required functionality\n- API endpoints handle all specified HTTP methods correctly\n- Data validation and error handling are present\n- Business logic is accu",
+      "relevance": 0.636
+    },
+    {
+      "source": "system_design_rubric.md",
+      "snippet": "# System Design Rubric\n\n## Evaluation Criteria for System Design Problems\n\n### Correctness (Weight: 30%)\n- Design addresses all stated requirements\n- Core components are correctly identified\n- Data flow is logical and complete\n- API design meets the problem needs\n\n### Complexity (Weight: 15%)\n- Syst",
+      "relevance": 0.636
+    },
+    {
+      "source": "ai_engineer_rubric.md",
+      "snippet": "# AI Engineer Rubric\n\n## Evaluation Criteria for AI Engineer Roles\n\n### Correctness (Weight: 30%)\n- ML/AI solution addresses the correct problem\n- Model architecture is appropriate for the task\n- Training/inference pipeline is logically sound\n- Evaluation metrics are correctly implemented\n\n### Compl",
+      "relevance": 0.545
+    },
+    {
+      "source": "fullstack_engineer_rubric.md",
+      "snippet": "# Full Stack Engineer Rubric\n\n## Evaluation Criteria for Full Stack Engineer Roles\n\n### Correctness (Weight: 30%)\n- Frontend and backend integration is correct\n- API contracts are properly implemented\n- Data flows correctly through the stack\n- State management is appropriate\n\n### Complexity (Weight:",
+      "relevance": 0.545
+    },
+    {
+      "source": "ai_engineer_rubric.md",
+      "snippet": "frastructure\n- Monitoring and logging are present\n\n### Communication (Weight: 20%)\n- Technical decisions are documented\n- Model card or documentation is present\n- Code comments explain AI-specific logic\n- Evaluation results are clearly reported\n\n## Seniority Expectations\n\n### Junior\n- Can implement",
+      "relevance": 0.455
+    },
+    {
+      "source": "rate_limiter_expected_solution.md",
+      "snippet": "# Rate Limiter Expected Solution\n\n## Problem: Design a Rate Limiter\n\n### Problem Description\nDesign and implement a rate limiter that limits the number of requests a user can make within a given time window.\n\n### Expected Solution Approach\n\n#### Fixed Window Approach\n- Maintain a dictionary mapping",
+      "relevance": 1.0
+    },
+    {
+      "source": "backend_engineer_rubric.md",
+      "snippet": "essary computations or redundant operations\n\n### Edge Cases (Weight: 15%)\n- Empty input handling\n- Null/None value handling\n- Boundary condition checks\n- Concurrent access considerations\n- Rate limiting and throttling\n- Database transaction handling\n- Timeout and retry logic\n\n### Readability (Weight",
+      "relevance": 0.75
+    },
+    {
+      "source": "backend_engineer_rubric.md",
+      "snippet": "se awareness is developing\n- Clean code is expected but not perfect\n\n### Mid\n- Solid understanding of trade-offs\n- Handles most edge cases\n- Applies appropriate design patterns\n- Considers performance implications\n\n### Senior\n- Demonstrates deep system thinking\n- Handles complex edge cases and concu",
+      "relevance": 0.75
+    }
+  ],
+  "bias_mitigation_notes": [
+    "The overall score is derived purely from the weighted quantitative metrics, avoiding subjective impressions.",
+    "Feedback is based solely on technical code analysis.",
+    "No personal traits or background information were considered.",
+    "Qualitative concerns (e.g., missing concurrency handling) are noted separately to ensure they are considered alongside the numeric score."
+  ],
+  "final_feedback": "The implementation correctly models a fixed\u2011window rate limiter with per\u2011user timestamp tracking and includes efficient pruning of stale entries. The logic is straightforward and respects the max_requests limit. However, several critical issues reduce its reliability: a boundary condition bug (using > instead of >=), lack of input validation, no thread\u2011safety, assumption of monotonic timestamps, O(N) timestamp list causing scalability concerns, and missing documentation/comments/error handling. The missed edge cases (empty inputs, null checks, negative values, type validation, concurrency, memory cleanup) further diminish robustness. Overall, the solution is functional but not production\u2011ready, warranting caution.",
+  "human_review_required": true,
+  "demo_mode": false,
+  "agent_steps": [
+    {
+      "step": "Input Validation",
+      "status": "completed",
+      "detail": "Language: python, Problem type: System Design",
+      "timestamp": 1782655743.4431355
+    },
+    {
+      "step": "Code Parsing",
+      "status": "completed",
+      "detail": "Found 2 functions, 1 classes",
+      "timestamp": 1782655743.4446416
+    },
+    {
+      "step": "RAG Retrieval",
+      "status": "completed",
+      "detail": "Retrieved 8 rubric chunks",
+      "timestamp": 1782655744.2691953
+    },
+    {
+      "step": "Correctness Evaluation",
+      "status": "completed",
+      "detail": "Correctness score: 80",
+      "timestamp": 1782655799.599631
+    },
+    {
+      "step": "Complexity Analysis",
+      "status": "completed",
+      "detail": "Time: O(max_requests) per call (or O(k) where k is the number of timestamps stored for the user, bounded by max_requests), Space: O(U * max_requests) in worst case, where U is the number of users (equivalently O(total stored timestamps))",
+      "timestamp": 1782655833.2231524
+    },
+    {
+      "step": "Edge Case Detection",
+      "status": "completed",
+      "detail": "Found 6 missed edge cases",
+      "timestamp": 1782655859.5757997
+    },
+    {
+      "step": "Code Quality Assessment",
+      "status": "completed",
+      "detail": "Readability: 70, Maintainability: 65",
+      "timestamp": 1782655859.5769043
+    },
+    {
+      "step": "Bias Mitigation",
+      "status": "completed",
+      "detail": "Clean - no bias detected",
+      "timestamp": 1782655865.6104383
+    },
+    {
+      "step": "Scoring",
+      "status": "completed",
+      "detail": "Scores: {\"correctness\": 80, \"complexity\": 20, \"edge_cases\": 55, \"readability\": 70, \"maintainability\": 65, \"communication\": 60}",
+      "timestamp": 1782655865.6111782
+    },
+    {
+      "step": "Recommendation",
+      "status": "completed",
+      "detail": "Recommendation: Lean No Hire, Score: 61",
+      "timestamp": 1782655922.5896199
+    },
+    {
+      "step": "Report Generation",
+      "status": "completed",
+      "detail": "Report generated successfully",
+      "timestamp": 1782655922.5896199
+    }
+  ]
+}

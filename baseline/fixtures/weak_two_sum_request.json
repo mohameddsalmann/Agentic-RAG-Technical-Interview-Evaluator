@@ -1,0 +1,9 @@
+{
+  "candidate_name": "Test Candidate",
+  "role": "Backend Engineer",
+  "seniority": "Junior",
+  "problem_title": "Two Sum",
+  "problem_description": "Given an array of integers and a target value, return the indices of two numbers that add up to the target.",
+  "candidate_code": "def two_sum(nums, target):\n    for i in range(len(nums)):\n        for j in range(len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n",
+  "language": "python"
+}

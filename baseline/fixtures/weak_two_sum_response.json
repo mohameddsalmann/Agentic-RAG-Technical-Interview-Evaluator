@@ -1,0 +1,154 @@
+{
+  "candidate_name": "Test Candidate",
+  "role": "Backend Engineer",
+  "problem_title": "Two Sum",
+  "overall_score": 47,
+  "recommendation": "Lean No Hire",
+  "scores": {
+    "correctness": 40,
+    "complexity": 50,
+    "edge_cases": 20,
+    "readability": 70,
+    "maintainability": 60,
+    "communication": 55
+  },
+  "time_complexity": "O(n^2)",
+  "space_complexity": "O(1)",
+  "strengths": [
+    "Straightforward and easy to understand implementation",
+    "Correctly identifies a valid pair when i != j and a solution exists"
+  ],
+  "weaknesses": [
+    "Allows i == j, potentially returning the same index twice",
+    "No explicit handling for the case where no solution exists",
+    "Time complexity is O(n\u00b2), which is less efficient than optimal solutions (e.g., O(n) using a hash map)",
+    "Missing input validation (e.g., empty array, non\u2011integer values)"
+  ],
+  "missed_edge_cases": [
+    "Empty input list \u2013 the function returns None instead of handling the empty case",
+    "Single\u2011element list \u2013 no pair can be formed, yet the code proceeds and returns None",
+    "No valid pair exists (target cannot be reached) \u2013 the function implicitly returns None",
+    "Using the same element twice (i == j) when the problem requires two distinct indices",
+    "Returned indices are not guaranteed to be in ascending order (i may be greater than j)",
+    "Implicit None return instead of a defined empty result (e.g., [] or raise an exception)"
+  ],
+  "retrieved_rubric_evidence": [
+    {
+      "source": "backend_engineer_rubric.md",
+      "snippet": "# Backend Engineer Rubric\n\n## Evaluation Criteria for Backend Engineer Roles\n\n### Correctness (Weight: 30%)\n- Solution correctly implements the required functionality\n- API endpoints handle all specified HTTP methods correctly\n- Data validation and error handling are present\n- Business logic is accu",
+      "relevance": 0.667
+    },
+    {
+      "source": "fullstack_engineer_rubric.md",
+      "snippet": "# Full Stack Engineer Rubric\n\n## Evaluation Criteria for Full Stack Engineer Roles\n\n### Correctness (Weight: 30%)\n- Frontend and backend integration is correct\n- API contracts are properly implemented\n- Data flows correctly through the stack\n- State management is appropriate\n\n### Complexity (Weight:",
+      "relevance": 0.556
+    },
+    {
+      "source": "ai_engineer_rubric.md",
+      "snippet": "# AI Engineer Rubric\n\n## Evaluation Criteria for AI Engineer Roles\n\n### Correctness (Weight: 30%)\n- ML/AI solution addresses the correct problem\n- Model architecture is appropriate for the task\n- Training/inference pipeline is logically sound\n- Evaluation metrics are correctly implemented\n\n### Compl",
+      "relevance": 0.444
+    },
+    {
+      "source": "algorithm_problem_rubric.md",
+      "snippet": "# Algorithm Problem Rubric\n\n## Evaluation Criteria for Algorithm Problems\n\n### Correctness (Weight: 30%)\n- Solution produces correct output for all test cases\n- Algorithm handles the general case properly\n- Logic is sound and complete\n- No off-by-one errors or indexing mistakes\n\n### Complexity (Weig",
+      "relevance": 0.444
+    },
+    {
+      "source": "system_design_rubric.md",
+      "snippet": "# System Design Rubric\n\n## Evaluation Criteria for System Design Problems\n\n### Correctness (Weight: 30%)\n- Design addresses all stated requirements\n- Core components are correctly identified\n- Data flow is logical and complete\n- API design meets the problem needs\n\n### Complexity (Weight: 15%)\n- Syst",
+      "relevance": 0.444
+    },
+    {
+      "source": "bias_mitigation_guidelines.md",
+      "snippet": "# Bias Mitigation Guidelines\n\n## Core Principles\n\n### 1. Technical Evidence Only\n- All feedback must be based on observable code quality and technical performance\n- Never infer personal traits, work ethic, or character from code\n- Do not make assumptions about the candidate's background\n\n### 2. Proh",
+      "relevance": 0.5
+    },
+    {
+      "source": "bias_mitigation_guidelines.md",
+      "snippet": "ality**: Do not infer nationality from naming conventions\n- **Education**: Do not make assumptions about school or educational background\n- **Name**: Candidate name must not influence evaluation in any way\n- **Background**: Do not infer socioeconomic or cultural background\n\n### 3. Neutral Profession",
+      "relevance": 0.5
+    },
+    {
+      "source": "bias_mitigation_guidelines.md",
+      "snippet": "e by a human\n\n## Bias Detection Checklist\n\nWhen reviewing feedback, check for:\n- [ ] Any reference to personal characteristics\n- [ ] Subjective language not tied to technical evidence\n- [ ] Assumptions about candidate's background\n- [ ] Inconsistent application of rubric standards\n- [ ] Language tha",
+      "relevance": 0.5
+    }
+  ],
+  "bias_mitigation_notes": [
+    "All categories were weighted according to the predefined percentages, ensuring a consistent and impartial evaluation across candidates.",
+    "Feedback is based solely on technical code analysis.",
+    "The overall score and recommendation are derived solely from the objective scoring rubric and identified strengths/weaknesses, without any subjective or demographic bias.",
+    "No personal traits or background information were considered."
+  ],
+  "final_feedback": "The implementation is straightforward and easy to understand, correctly identifying a valid pair when distinct indices are used. However, it has several critical shortcomings: it allows the same element to be used twice (i == j), lacks explicit handling for cases where no solution exists, and does not validate input (e.g., empty arrays or non\u2011integer values). The algorithm runs in O(n\u00b2) time, which is less efficient than optimal O(n) hash\u2011map solutions, and it does not guarantee index ordering or a consistent return format for error conditions. Addressing these issues\u2014by adding input validation, enforcing distinct indices, improving time complexity, and defining clear behavior for edge cases\u2014would significantly enhance correctness, maintainability, and reliability.",
+  "human_review_required": true,
+  "demo_mode": false,
+  "agent_steps": [
+    {
+      "step": "Input Validation",
+      "status": "completed",
+      "detail": "Language: python, Problem type: Algorithm",
+      "timestamp": 1782655924.640838
+    },
+    {
+      "step": "Code Parsing",
+      "status": "completed",
+      "detail": "Found 1 functions, 0 classes",
+      "timestamp": 1782655924.641349
+    },
+    {
+      "step": "RAG Retrieval",
+      "status": "completed",
+      "detail": "Retrieved 8 rubric chunks",
+      "timestamp": 1782655925.8366501
+    },
+    {
+      "step": "Correctness Evaluation",
+      "status": "completed",
+      "detail": "Correctness score: 40",
+      "timestamp": 1782655966.162917
+    },
+    {
+      "step": "Complexity Analysis",
+      "status": "completed",
+      "detail": "Time: O(n^2), Space: O(1)",
+      "timestamp": 1782655976.4722736
+    },
+    {
+      "step": "Edge Case Detection",
+      "status": "completed",
+      "detail": "Found 6 missed edge cases",
+      "timestamp": 1782655988.9165154
+    },
+    {
+      "step": "Code Quality Assessment",
+      "status": "completed",
+      "detail": "Readability: 70, Maintainability: 60",
+      "timestamp": 1782655988.9174488
+    },
+    {
+      "step": "Bias Mitigation",
+      "status": "completed",
+      "detail": "Clean - no bias detected",
+      "timestamp": 1782656001.962201
+    },
+    {
+      "step": "Scoring",
+      "status": "completed",
+      "detail": "Scores: {\"correctness\": 40, \"complexity\": 50, \"edge_cases\": 20, \"readability\": 70, \"maintainability\": 60, \"communication\": 55}",
+      "timestamp": 1782656001.9637103
+    },
+    {
+      "step": "Recommendation",
+      "status": "completed",
+      "detail": "Recommendation: Lean No Hire, Score: 47",
+      "timestamp": 1782656015.6633182
+    },
+    {
+      "step": "Report Generation",
+      "status": "completed",
+      "detail": "Report generated successfully",
+      "timestamp": 1782656015.6633182
+    }
+  ]
+}

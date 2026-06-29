@@ -1,0 +1,9 @@
+{
+  "candidate_name": "Jane Doe",
+  "role": "Full Stack Engineer",
+  "seniority": "Senior",
+  "problem_title": "Build a REST API CRUD",
+  "problem_description": "Design and implement a REST API with CRUD operations for a resource.",
+  "candidate_code": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\nlet tasks = [];\n\napp.get('/tasks', (req, res) => res.json(tasks));\napp.post('/tasks', (req, res) => {\n    const task = { id: Date.now(), ...req.body };\n    tasks.push(task);\n    res.status(201).json(task);\n});\napp.delete('/tasks/:id', (req, res) => {\n    tasks = tasks.filter(t => t.id !== parseInt(req.params.id));\n    res.status(204).send();\n});\n\napp.listen(3000);\n",
+  "language": "javascript"
+}

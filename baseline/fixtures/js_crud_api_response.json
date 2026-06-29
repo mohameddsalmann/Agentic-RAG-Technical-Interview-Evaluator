@@ -1,0 +1,161 @@
+{
+  "candidate_name": "Jane Doe",
+  "role": "Full Stack Engineer",
+  "problem_title": "Build a REST API CRUD",
+  "overall_score": 46,
+  "recommendation": "No Hire",
+  "scores": {
+    "correctness": 45,
+    "complexity": 30,
+    "edge_cases": 55,
+    "readability": 78,
+    "maintainability": 52,
+    "communication": 35
+  },
+  "time_complexity": "GET: O(1), POST: O(1), DELETE: O(n)",
+  "space_complexity": "O(n) for storing tasks; O(n) temporary during DELETE filter",
+  "strengths": [
+    "Clean, concise Express setup with JSON body parsing",
+    "Correct HTTP methods and status codes for the implemented endpoints (GET 200, POST 201, DELETE 204)",
+    "Simple in\u2011memory data store that works for a quick prototype",
+    "Uses `Date.now()` to generate unique IDs, which is straightforward and collision\u2011resistant for a single process"
+  ],
+  "weaknesses": [
+    "Missing **Update** (PUT/PATCH) endpoint \u2013 incomplete CRUD coverage",
+    "Missing **single\u2011resource GET** (`GET /tasks/:id`) \u2013 typical CRUD expectation",
+    "No request validation or error handling (400/404 responses, malformed JSON handling)",
+    "DELETE endpoint does not differentiate between \"task not found\" and \"successfully deleted\" (always returns 204)",
+    "No API documentation, README, or comments explaining endpoints, request/response shapes, or usage",
+    "Code is monolithic (routes mixed with data store) \u2013 not modular or reusable",
+    "No environment configuration externalization (port, data store) \u2013 not production\u2011ready",
+    "Potential bug: `parseInt` on `:id` may produce `NaN` for non\u2011numeric IDs, leading to unexpected behavior"
+  ],
+  "missed_edge_cases": [
+    "No empty input handling detected",
+    "No null/None checks detected",
+    "No negative value handling detected",
+    "No type validation detected",
+    "No concurrency handling detected",
+    "No memory cleanup mechanism detected"
+  ],
+  "retrieved_rubric_evidence": [
+    {
+      "source": "fullstack_engineer_rubric.md",
+      "snippet": "# Full Stack Engineer Rubric\n\n## Evaluation Criteria for Full Stack Engineer Roles\n\n### Correctness (Weight: 30%)\n- Frontend and backend integration is correct\n- API contracts are properly implemented\n- Data flows correctly through the stack\n- State management is appropriate\n\n### Complexity (Weight:",
+      "relevance": 0.692
+    },
+    {
+      "source": "fullstack_engineer_rubric.md",
+      "snippet": "aces are defined\n- Environment configuration is externalized\n- Code is modular and reusable\n\n### Communication (Weight: 20%)\n- API documentation is present\n- Component documentation\n- Code comments for complex business logic\n- README or setup instructions\n\n## Seniority Expectations\n\n### Junior\n- Can",
+      "relevance": 0.615
+    },
+    {
+      "source": "backend_engineer_rubric.md",
+      "snippet": "# Backend Engineer Rubric\n\n## Evaluation Criteria for Backend Engineer Roles\n\n### Correctness (Weight: 30%)\n- Solution correctly implements the required functionality\n- API endpoints handle all specified HTTP methods correctly\n- Data validation and error handling are present\n- Business logic is accu",
+      "relevance": 0.538
+    },
+    {
+      "source": "ai_engineer_rubric.md",
+      "snippet": "# AI Engineer Rubric\n\n## Evaluation Criteria for AI Engineer Roles\n\n### Correctness (Weight: 30%)\n- ML/AI solution addresses the correct problem\n- Model architecture is appropriate for the task\n- Training/inference pipeline is logically sound\n- Evaluation metrics are correctly implemented\n\n### Compl",
+      "relevance": 0.385
+    },
+    {
+      "source": "system_design_rubric.md",
+      "snippet": "# System Design Rubric\n\n## Evaluation Criteria for System Design Problems\n\n### Correctness (Weight: 30%)\n- Design addresses all stated requirements\n- Core components are correctly identified\n- Data flow is logical and complete\n- API design meets the problem needs\n\n### Complexity (Weight: 15%)\n- Syst",
+      "relevance": 0.385
+    },
+    {
+      "source": "fullstack_engineer_rubric.md",
+      "snippet": "aces are defined\n- Environment configuration is externalized\n- Code is modular and reusable\n\n### Communication (Weight: 20%)\n- API documentation is present\n- Component documentation\n- Code comments for complex business logic\n- README or setup instructions\n\n## Seniority Expectations\n\n### Junior\n- Can",
+      "relevance": 0.8
+    },
+    {
+      "source": "fullstack_engineer_rubric.md",
+      "snippet": "r handling on frontend\n- API error responses are properly handled\n- Form validation on both client and server\n- Authentication and authorization edge cases\n- File upload handling\n- Concurrent user scenarios\n\n### Readability (Weight: 10%)\n- Consistent naming across frontend and backend\n- Component st",
+      "relevance": 0.6
+    },
+    {
+      "source": "backend_engineer_rubric.md",
+      "snippet": "# Backend Engineer Rubric\n\n## Evaluation Criteria for Backend Engineer Roles\n\n### Correctness (Weight: 30%)\n- Solution correctly implements the required functionality\n- API endpoints handle all specified HTTP methods correctly\n- Data validation and error handling are present\n- Business logic is accu",
+      "relevance": 0.4
+    }
+  ],
+  "bias_mitigation_notes": [
+    "Evaluated based on weighted scores rather than subjective impressions; readability strength was balanced against functional completeness.",
+    "Considered both strengths (clean Express setup, correct HTTP semantics) and critical weaknesses (missing endpoints, validation, documentation) to reach a balanced decision.",
+    "Did not penalize for small code size or limited lines of code, focusing instead on feature coverage and robustness.",
+    "No personal traits or background information were considered.",
+    "Feedback is based solely on technical code analysis."
+  ],
+  "final_feedback": "The candidate shows a solid grasp of basic Express setup, correct HTTP methods, and simple in\u2011memory data handling, delivering clean and concise code with straightforward ID generation. However, the implementation is incomplete and lacks robustness: critical CRUD endpoints (PUT/PATCH and single\u2011resource GET) are missing, request validation and error handling are absent, and the delete operation does not differentiate between a missing resource and a successful deletion. The code is monolithic, lacks documentation, and does not externalize configuration, making it unsuitable for production or further scaling. Edge\u2011case handling, type validation, and concurrency safety are also missing. While the solution works as a quick prototype, it falls short of the standards expected for a hireable candidate.",
+  "human_review_required": true,
+  "demo_mode": false,
+  "agent_steps": [
+    {
+      "step": "Input Validation",
+      "status": "completed",
+      "detail": "Language: javascript, Problem type: Backend API",
+      "timestamp": 1782656017.7118433
+    },
+    {
+      "step": "Code Parsing",
+      "status": "completed",
+      "detail": "Found 0 functions, 0 classes",
+      "timestamp": 1782656017.713366
+    },
+    {
+      "step": "RAG Retrieval",
+      "status": "completed",
+      "detail": "Retrieved 8 rubric chunks",
+      "timestamp": 1782656019.4234
+    },
+    {
+      "step": "Correctness Evaluation",
+      "status": "completed",
+      "detail": "Correctness score: 45",
+      "timestamp": 1782656046.1266205
+    },
+    {
+      "step": "Complexity Analysis",
+      "status": "completed",
+      "detail": "Time: GET: O(1), POST: O(1), DELETE: O(n), Space: O(n) for storing tasks; O(n) temporary during DELETE filter",
+      "timestamp": 1782656060.3695025
+    },
+    {
+      "step": "Edge Case Detection",
+      "status": "completed",
+      "detail": "Found 6 missed edge cases",
+      "timestamp": 1782656081.882676
+    },
+    {
+      "step": "Code Quality Assessment",
+      "status": "completed",
+      "detail": "Readability: 78, Maintainability: 52",
+      "timestamp": 1782656081.8836827
+    },
+    {
+      "step": "Bias Mitigation",
+      "status": "completed",
+      "detail": "Clean - no bias detected",
+      "timestamp": 1782656087.2560933
+    },
+    {
+      "step": "Scoring",
+      "status": "completed",
+      "detail": "Scores: {\"correctness\": 45, \"complexity\": 30, \"edge_cases\": 55, \"readability\": 78, \"maintainability\": 52, \"communication\": 35}",
+      "timestamp": 1782656087.2576005
+    },
+    {
+      "step": "Recommendation",
+      "status": "completed",
+      "detail": "Recommendation: No Hire, Score: 46",
+      "timestamp": 1782656101.5865111
+    },
+    {
+      "step": "Report Generation",
+      "status": "completed",
+      "detail": "Report generated successfully",
+      "timestamp": 1782656101.587517
+    }
+  ]
+}
