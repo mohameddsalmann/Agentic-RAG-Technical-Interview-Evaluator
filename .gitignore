@@ -32,8 +32,8 @@ test_debug.py
 # Logs
 *.log
 
-# Legacy Python backend (kept for reference)
-legacy_backend/
-
 # Baseline fixtures (already committed)
 # baseline/
+
+# Vercel deployment (legacy folders archived in repo but not deployed)
+# Note: .vercelignore controls what Vercel deploys; see .vercelignore

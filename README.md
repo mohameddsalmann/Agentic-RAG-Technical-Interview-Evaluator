@@ -275,9 +275,13 @@ The goal is to make the technical depth visible within the first 30 seconds of o
 
 ### Deployment
 
-- Vercel (serverless Node.js runtime)
+- **Single Vercel Next.js application** (no separate backend service)
+- Repository root is the Next.js app root
+- Serverless Node.js runtime
 - Environment-based configuration
 - Local demo mode without API key
+
+> **Note:** `legacy_backend/` and `legacy_frontend/` are archived reference only. They are not used at runtime and are excluded from Vercel deployment via `.vercelignore`.
 
 ---
 
@@ -332,12 +336,17 @@ npm run start
 
 1. Push your repository to GitHub.
 2. Go to [vercel.com](https://vercel.com) and import the repository.
-3. Add environment variables in the Vercel dashboard:
-   - `OPENAI_API_KEY` or `OPENROUTER_API_KEY`
-   - `OPENROUTER_BASE_URL` (if using OpenRouter)
-   - `MODEL_NAME`
+3. Vercel should detect **Framework: Next.js** and **Root directory: /**. If not, make sure `.vercelignore` is present and the repository root contains `package.json` and `next.config.ts`.
+4. Add environment variables in the Vercel dashboard:
+   - `OPENAI_API_KEY` (or `OPENROUTER_API_KEY`, or `FALLBACK_API_KEY`)
+   - `OPENAI_BASE_URL` (if using Groq or another OpenAI-compatible provider)
+   - `LLM_MODEL` or `MODEL_NAME`
+   - `FALLBACK_API_KEY`, `FALLBACK_BASE_URL`, `FALLBACK_MODEL` (optional fallback)
+   - `EMBEDDING_MODEL`, `EMBEDDING_BASE_URL`, `EMBEDDING_API_KEY` (if using a separate embedding provider)
    - `UPSTASH_VECTOR_REST_URL` and `UPSTASH_VECTOR_REST_TOKEN` (for production RAG)
-4. Deploy. Vercel automatically detects Next.js and runs `npm run build`.
+5. Deploy. Vercel automatically detects Next.js and runs `npm run build` from the repository root.
+
+> **Important:** This project deploys as a single Next.js application. There is no separate FastAPI backend service. The API endpoints are Next.js Route Handlers at `app/api/health/route.ts` and `app/api/evaluate/route.ts`.
 
 ### Upstash Vector Indexing
 
@@ -356,10 +365,23 @@ Create a `.env` file from `.env.example`.
 ```env
 # LLM Provider
 OPENAI_API_KEY=
+OPENAI_BASE_URL=                      # e.g. https://api.groq.com/openai/v1
+LLM_MODEL=                            # e.g. llama-3.3-70b-versatile or gpt-4o-mini
+MODEL_NAME=                           # alias for LLM_MODEL
+
+# Fallback LLM Provider
+FALLBACK_API_KEY=
+FALLBACK_BASE_URL=                    # e.g. https://openrouter.ai/api/v1
+FALLBACK_MODEL=                       # e.g. meta-llama/llama-3.3-70b-instruct:free
+
+# OpenRouter (alternative)
 OPENROUTER_API_KEY=
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-MODEL_NAME=gpt-4o-mini
+
+# Embeddings
 EMBEDDING_MODEL=text-embedding-3-small
+EMBEDDING_BASE_URL=                   # e.g. https://generativelanguage.googleapis.com/v1beta/openai
+EMBEDDING_API_KEY=                    # if different from OPENAI_API_KEY
 
 # Vector DB
 UPSTASH_VECTOR_REST_URL=
@@ -479,12 +501,19 @@ Returns:
     capture_baseline.py
     /fixtures
       *.json
+  /legacy_backend
+    README.md
+    (original FastAPI backend — reference only, not deployed)
+  /legacy_frontend
+    README.md
+    (original frontend — reference only, not deployed)
 
 README.md
 .env.example
 next.config.ts
 tsconfig.json
 package.json
+.vercelignore
 ```
 
 ---

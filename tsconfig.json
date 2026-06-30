@@ -38,8 +38,7 @@
   "exclude": [
     "node_modules",
     "legacy_backend",
-    "backend",
-    "baseline",
-    "frontend"
+    "legacy_frontend",
+    "baseline"
   ]
 }

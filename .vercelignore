@@ -1,0 +1,29 @@
+# Legacy reference folders — archived in git but not deployed to Vercel
+legacy_backend/
+legacy_frontend/
+
+# Docker and multi-service deployment artifacts (archived or removed)
+Dockerfile
+docker-compose.yml
+
+# Python backend artifacts
+*.py
+requirements.txt
+pyproject.toml
+
+# Local environment files
+.env
+.env.local
+
+# Build outputs
+.next/
+out/
+dist/
+node_modules/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

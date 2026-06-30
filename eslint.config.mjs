@@ -2,7 +2,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["frontend/**", "backend/**", "baseline/**", "node_modules/**", ".next/**", "scripts/**"],
+    ignores: ["legacy_frontend/**", "legacy_backend/**", "baseline/**", "node_modules/**", ".next/**", "scripts/**"],
   },
   ...tseslint.configs.recommended,
   {
