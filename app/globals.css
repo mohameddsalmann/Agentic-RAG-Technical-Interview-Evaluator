@@ -24,7 +24,7 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
   line-height: 1.65;
 }
 
@@ -116,6 +116,81 @@ select {
   padding-right: 2.5rem;
 }
 
+/* Landing page background */
+.landing-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(88, 166, 255, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(63, 185, 80, 0.04), transparent),
+    var(--bg-primary);
+}
+
+/* Glow accent for CTA buttons */
+.glow-accent {
+  box-shadow: 0 0 20px -5px rgba(88, 166, 255, 0.4);
+}
+.glow-accent:hover {
+  box-shadow: 0 0 30px -5px rgba(88, 166, 255, 0.6);
+}
+
+/* Perspective utility for 3D card hover */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Landing page animations */
+@keyframes landing-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-fade-up {
+  animation: landing-fade-up 0.6s ease-out both;
+}
+
+@keyframes landing-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.landing-float {
+  animation: landing-float 4s ease-in-out infinite;
+}
+
+@keyframes landing-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+.landing-pulse {
+  animation: landing-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes landing-bar {
+  from {
+    width: 0%;
+  }
+}
+
+.landing-bar {
+  animation: landing-bar 1s ease-out 1.5s backwards;
+}
+
 /* Print styles */
 @media print {
   body {
@@ -130,5 +205,14 @@ select {
     border: 1px solid #ccc !important;
     background: white !important;
     break-inside: avoid;
+  }
+}
+
+/* Reduced motion: disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

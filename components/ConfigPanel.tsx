@@ -102,12 +102,12 @@ export function ConfigPanel({
         </div>
       ) : (
         /* Expanded Config Form */
-        <div className="p-5 space-y-4 animate-fade-in">
+        <div className="p-4 space-y-3 animate-fade-in">
           <p className="text-xs text-muted leading-relaxed">
             Choose the role, seniority, problem, and programming language.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Candidate Name */}
             <div>
               <label className="text-xs font-semibold text-text-secondary mb-1.5 block">
@@ -162,7 +162,7 @@ export function ConfigPanel({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Problem select */}
             <div className="md:col-span-2">
               <label className="text-xs font-semibold text-text-secondary mb-1.5 block">

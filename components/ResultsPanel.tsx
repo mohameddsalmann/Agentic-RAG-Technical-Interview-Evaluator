@@ -180,45 +180,45 @@ export function ResultsPanel({
 
         {/* 2. Before Evaluation Placeholder */}
         {!result && !loading && (
-          <div className="flex flex-col items-center justify-center text-center h-full max-w-lg mx-auto py-12 animate-fade-in">
-            <div className="w-16 h-16 rounded-full bg-bg-elevated border border-border flex items-center justify-center mb-5">
-              <Sparkles className="w-8 h-8 text-accent/70" />
+          <div className="flex flex-col items-center justify-center text-center h-full max-w-lg mx-auto py-8 animate-fade-in">
+            <div className="w-12 h-12 rounded-full bg-bg-elevated border border-border flex items-center justify-center mb-4">
+              <Sparkles className="w-6 h-6 text-accent/70" />
             </div>
-            <h3 className="text-base font-bold text-[#f0f6fc] mb-2">
+            <h3 className="text-sm font-bold text-[#f0f6fc] mb-1.5">
               Run an evaluation to generate a structured technical interview report.
             </h3>
-            <p className="text-sm text-muted leading-relaxed mb-6">
-              You'll get a clear, evidence-based assessment of the candidate's code.
+            <p className="text-xs text-muted leading-relaxed mb-4">
+              You&apos;ll get a clear, evidence-based assessment of the candidate&apos;s code.
             </p>
 
-            <div className="grid grid-cols-2 gap-3 w-full">
-              <div className="ide-card p-4 text-left">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <Award className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-semibold text-[#f0f6fc]">Overall Score</span>
+            <div className="grid grid-cols-2 gap-2 w-full">
+              <div className="ide-card p-3 text-left">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Award className="w-3.5 h-3.5 text-accent" />
+                  <span className="text-xs font-semibold text-[#f0f6fc]">Overall Score</span>
                 </div>
-                <p className="text-xs text-muted leading-relaxed">Weighted score across 6 evaluation dimensions, out of 100.</p>
+                <p className="text-[11px] text-muted leading-relaxed">Weighted score across 6 dimensions, out of 100.</p>
               </div>
-              <div className="ide-card p-4 text-left">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <FileText className="w-4 h-4 text-success" />
-                  <span className="text-sm font-semibold text-[#f0f6fc]">Recommendation</span>
+              <div className="ide-card p-3 text-left">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <FileText className="w-3.5 h-3.5 text-success" />
+                  <span className="text-xs font-semibold text-[#f0f6fc]">Recommendation</span>
                 </div>
-                <p className="text-xs text-muted leading-relaxed">Hire, Lean Hire, or No Hire — with human review advisory.</p>
+                <p className="text-[11px] text-muted leading-relaxed">Hire, Lean Hire, or No Hire with advisory.</p>
               </div>
-              <div className="ide-card p-4 text-left">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <BarChart3 className="w-4 h-4 text-warning" />
-                  <span className="text-sm font-semibold text-[#f0f6fc]">Score Breakdown</span>
+              <div className="ide-card p-3 text-left">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <BarChart3 className="w-3.5 h-3.5 text-warning" />
+                  <span className="text-xs font-semibold text-[#f0f6fc]">Score Breakdown</span>
                 </div>
-                <p className="text-xs text-muted leading-relaxed">Per-dimension scores: correctness, complexity, edge cases, and more.</p>
+                <p className="text-[11px] text-muted leading-relaxed">Per-dimension scores: correctness, complexity, more.</p>
               </div>
-              <div className="ide-card p-4 text-left">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <FileSearch className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-semibold text-[#f0f6fc]">Rubric Evidence</span>
+              <div className="ide-card p-3 text-left">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <FileSearch className="w-3.5 h-3.5 text-accent" />
+                  <span className="text-xs font-semibold text-[#f0f6fc]">Rubric Evidence</span>
                 </div>
-                <p className="text-xs text-muted leading-relaxed">Retrieved facts from the knowledge base supporting each score.</p>
+                <p className="text-[11px] text-muted leading-relaxed">Retrieved facts from the knowledge base.</p>
               </div>
             </div>
           </div>

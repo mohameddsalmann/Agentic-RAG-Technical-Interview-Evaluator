@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { Play, Loader2, RotateCcw, CheckCircle2, AlertCircle } from "lucide-react";
+import { Play, Loader2, RotateCcw, CheckCircle2, AlertCircle, Info } from "lucide-react";
 import {
   ROLES, SENIORITIES, PROBLEMS, DEFAULT_CODE,
   type EvaluateRequest, type EvaluateResponse,
@@ -60,6 +60,8 @@ export function EvaluatorDashboard() {
   // UI state
   const [configCollapsed, setConfigCollapsed] = useState(false);
   const [mobileTab, setMobileTab] = useState<MobileTabId>("code");
+  const [isEditorExpanded, setIsEditorExpanded] = useState(false);
+  const [langHint, setLangHint] = useState<string | null>(null);
 
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -104,9 +106,14 @@ export function EvaluatorDashboard() {
   }, [clearFieldError]);
 
   const handleLanguageChange = useCallback((v: string) => {
+    if (code.trim() && v !== language) {
+      const labels: Record<string, string> = { python: "Python", javascript: "JavaScript", java: "Java", cpp: "C++" };
+      setLangHint(`Language changed to ${labels[v] || v}. Existing code was kept.`);
+      setTimeout(() => setLangHint(null), 3000);
+    }
     setLanguage(v);
     clearFieldError("language");
-  }, [clearFieldError]);
+  }, [code, language, clearFieldError]);
 
   const handleCodeChange = useCallback((v: string) => {
     setCode(v);
@@ -268,7 +275,7 @@ export function EvaluatorDashboard() {
   return (
     <div className="flex flex-col h-full lg:flex-row divide-y lg:divide-y-0 lg:divide-x divide-border overflow-hidden">
       {/* Left panel: step guide + config + editor + sticky run button */}
-      <div className="flex flex-col h-full lg:w-1/2 min-h-0 overflow-hidden">
+      <div className="flex flex-col h-full lg:w-[58%] min-h-0 overflow-hidden">
         {/* Step Guide */}
         <StepGuide
           hasConfig={hasConfig}
@@ -296,17 +303,28 @@ export function EvaluatorDashboard() {
           />
         </div>
 
+        {/* Language hint toast */}
+        {langHint && (
+          <div className="flex items-center gap-2 px-4 py-1.5 bg-accent/5 border-b border-accent/20 text-xs text-accent animate-fade-in">
+            <Info className="w-3.5 h-3.5 flex-shrink-0" />
+            <span>{langHint}</span>
+          </div>
+        )}
+
         {/* Editor section */}
         <div
-          className={`${mobileTab === "code" ? "flex" : "hidden"} lg:flex flex-1 min-h-0 relative bg-bg-primary`}
+          className={`${mobileTab === "code" ? "flex" : "hidden"} lg:flex flex-1 min-h-0 min-h-[60vh] lg:min-h-0 relative bg-bg-primary`}
         >
           <EditorSection
             language={language}
             problemKey={problemKey}
             code={code}
             onCodeChange={handleCodeChange}
+            isExpanded={isEditorExpanded}
+            onExpand={() => setIsEditorExpanded(true)}
+            onCloseExpand={() => setIsEditorExpanded(false)}
           >
-            <div className="flex-1 h-[350px] lg:h-full w-full">
+            <div className="flex-1 h-full w-full">
               <MonacoEditor
                 language={language}
                 value={code}
@@ -376,7 +394,7 @@ export function EvaluatorDashboard() {
 
       {/* Right panel: results panel */}
       <div
-        className={`${(mobileTab === "report" || mobileTab === "timeline") ? "flex" : "hidden"} lg:flex flex-1 min-h-0 overflow-hidden`}
+        className={`${(mobileTab === "report" || mobileTab === "timeline") ? "flex" : "hidden"} lg:flex lg:w-[42%] min-h-0 overflow-hidden`}
       >
         <ResultsPanel
           result={result}

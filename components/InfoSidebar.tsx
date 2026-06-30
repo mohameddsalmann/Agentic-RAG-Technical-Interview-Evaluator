@@ -47,7 +47,7 @@ export function InfoSidebar({ open, onClose }: InfoSidebarProps) {
       <aside
         ref={drawerRef}
         className={`fixed top-0 left-0 h-full z-50 w-full sm:w-96 bg-bg-card border-r border-border overflow-y-auto transition-transform duration-300 ease-in-out ${
-          open ? "translate-x-0" : "-translate-x-full"
+          open ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
         }`}
         aria-hidden={!open}
       >

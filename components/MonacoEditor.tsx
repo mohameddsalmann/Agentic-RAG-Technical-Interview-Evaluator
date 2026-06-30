@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Editor from "@monaco-editor/react";
+import Editor, { type OnMount } from "@monaco-editor/react";
 
 interface MonacoEditorProps {
   language: string;
@@ -35,10 +35,46 @@ export function MonacoEditor({ language, value, onChange }: MonacoEditorProps) {
     };
   }, []);
 
+  const handleMount: OnMount = (_editor, monaco) => {
+    monaco.editor.defineTheme("github-dark", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [
+        { token: "comment", foreground: "8b949e", fontStyle: "italic" },
+        { token: "keyword", foreground: "ff7b72" },
+        { token: "string", foreground: "a5d6ff" },
+        { token: "number", foreground: "79c0ff" },
+        { token: "type", foreground: "79c0ff" },
+        { token: "function", foreground: "d2a8ff" },
+        { token: "variable", foreground: "f0f6fc" },
+      ],
+      colors: {
+        "editor.background": "#0d1117",
+        "editor.foreground": "#f0f6fc",
+        "editorLineNumber.foreground": "#484f58",
+        "editorLineNumber.activeForeground": "#8b949e",
+        "editor.selectionBackground": "#264f78",
+        "editor.lineHighlightBackground": "#161b22",
+        "editorCursor.foreground": "#58a6ff",
+        "editorIndentGuide.background": "#21262d",
+        "editorIndentGuide.activeBackground": "#30363d",
+        "editorWidget.background": "#161b22",
+        "editorWidget.border": "#30363d",
+        "editorSuggestWidget.background": "#161b22",
+        "editorSuggestWidget.border": "#30363d",
+        "editorSuggestWidget.selectedBackground": "#1c2128",
+        "scrollbarSlider.background": "#30363d80",
+        "scrollbarSlider.hoverBackground": "#484f58",
+      },
+    });
+    monaco.editor.setTheme("github-dark");
+  };
+
   if (!ready) {
     return (
-      <div className="flex items-center justify-center h-full text-muted text-sm">
-        Initializing local editor…
+      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted text-sm">
+        <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+        <span>Loading code editor…</span>
       </div>
     );
   }
@@ -50,20 +86,26 @@ export function MonacoEditor({ language, value, onChange }: MonacoEditorProps) {
       value={value}
       onChange={(val) => onChange(val || "")}
       theme="vs-dark"
+      onMount={handleMount}
       loading={
-        <div className="flex items-center justify-center h-full text-muted text-sm">
-          Loading editor interface...
+        <div className="flex flex-col items-center justify-center h-full gap-2 text-muted text-sm">
+          <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+          <span>Loading code editor…</span>
         </div>
       }
       options={{
         minimap: { enabled: false },
-        fontSize: 13,
-        lineHeight: 1.5,
+        fontSize: 14,
+        lineHeight: 22,
+        tabSize: 4,
         fontFamily: "'Fira Code', 'Cascadia Code', ui-monospace, monospace",
         lineNumbers: "on",
         scrollBeyondLastLine: false,
-        padding: { top: 16, bottom: 16 },
+        padding: { top: 12, bottom: 12 },
         automaticLayout: true,
+        bracketPairColorization: { enabled: true },
+        autoIndent: "full",
+        wordWrap: "off",
       }}
     />
   );
